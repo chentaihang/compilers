@@ -1,5 +1,6 @@
 #include "expression_to_NFA.cpp"
 #include "NFA_to_DFA.cpp"
+#include "DFA_simplified.cpp"
 int main() {
     // 输入一个简单的正则表达式，比如 a* 或 a|b
     string regex;
@@ -13,6 +14,7 @@ int main() {
     printNFA(nfa);
    cout << "成功构建 NFA!" << endl;
    DFA *dfa=NFAtoDFA(nfa,alphabet);
+   dfa=DFA_simplified(dfa,alphabet);
    printDFA(dfa);
    return 0;
 }
