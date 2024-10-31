@@ -106,11 +106,11 @@ void printNFA(NFA* nfa) {
     cout << "NFA Start State: " << nfa->start << endl;
     cout << "NFA End State: " << nfa->end << endl;
 
-    // Use a set to keep track of all visited states (to avoid duplicates)
+    // 用于记录的集合，防止重复访问
     set<State*> visited;
     queue<State*> q;
 
-    // Start with the initial state
+    // 初始化
     q.push(nfa->start);
     visited.insert(nfa->start);
 
@@ -120,7 +120,7 @@ void printNFA(NFA* nfa) {
         State* current = q.front();
         q.pop();
 
-        // Print character-based transitions
+        // 打印字符转换
         for (const auto& [symbol, states] : current->transitions) {
             for (State* next : states) {
                 cout << current << " --'" << symbol << "'--> " << next << endl;
@@ -131,7 +131,7 @@ void printNFA(NFA* nfa) {
             }
         }
 
-        // Print ε-transitions
+        // 输出ε边
         for (State* next : current->etransitions) {
             cout << current << " --ε--> " << next << endl;
             if (visited.find(next) == visited.end()) {
