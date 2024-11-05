@@ -2,6 +2,7 @@
 #include<vector>
 #include<string>
 #include<map>
+#include<set>
 using namespace std;
 class Production {
 public:
@@ -19,8 +20,7 @@ public:
     map<char, Production> productions; // 非终结符与其产生式的映射
     void addproduction(const string input)
     {   
-
-        char non_terminal; int flag1;
+        char non_terminal;
         non_terminal=input[0];
         if (productions.find(non_terminal) != productions.end())
         return;
@@ -36,6 +36,8 @@ public:
             }
             temp.push_back(input[i]);
         }
+        if(!temp.empty())
+        temp1.addrule(temp);
         productions[non_terminal]=temp1;
     }
 };
